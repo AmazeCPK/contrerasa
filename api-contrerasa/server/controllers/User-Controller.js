@@ -29,16 +29,6 @@ userController.getUserById = async(req,res) =>{
 		res.json({error:'User not found'});
 }
 
-
-userController.saveNewUser = async (req,res) =>{
-	const newUser = new User(req.body);
-	const user = await knex('users as u')
-	.insert(newUser)
-	.returning(returnData);
-
-	outputData(res,user,'User not saved')
-}
-
 userController.updateUser = async (req,res) =>{
 	const userData = {
 		first_name: req.body.first_name,

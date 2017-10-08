@@ -1,23 +1,19 @@
 import express from 'express';
-import AuthController from './../controllers/Auth-Controller';
-import passportService from './../config/passport';
 import passport from 'passport';
 
-// Todo- move to controller
-const requireAuth = passport.authenticate('jwt',{session:false});
-const requireLogin = passport.authenticate('local',{session:false});
+import passportService from './../config/passport';
+import authController from './../controllers/Auth-Controller';
 
 const router = express.Router();
+const requireAuth = passport.authenticate('jwt',{session:false});
+const requireLogin = passport.authenticate('local', {session:false});
 
-// Check Auth
 router.get('/', requireAuth, (req,res)=>{
-	res.json({success:true});
-})
+	res.json({success:true})
+});
 
-// Register
-router.post('/register', AuthController.register);
+router.post('/', requireLogin, authController.login);
+router.post('/register', authController.register);
 
-// Login 
-router.post('/login', requireLogin, AuthController.login);
 
 export default router;

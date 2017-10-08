@@ -9,6 +9,4 @@ router.get('/:id', UserController.getUserById);
 router.patch('/:id', UserController.updateUser);
 router.patch('/:id/role', UserController.updateRole);
 
-router.post('/', UserController.saveNewUser);
-
 export default router;

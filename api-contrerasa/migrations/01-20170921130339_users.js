@@ -8,8 +8,8 @@ exports.up = function(knex, Promise) {
 			table.text('email');
 			table.text('password');
 			table.enum('role',['guest','member','client','moderator','admin','owner']);
-			table.text('web_token');
-			table.timestamp('web_token_expires');
+			table.text('token');
+			table.timestamp('token_expires');
 			table.timestamps(true,true);
 			table.boolean('is_deleted').defaultTo(false);
 		})
